@@ -13,4 +13,4 @@ Where Y is the Laplacian spherical harmonic, the subscript is the degree, and th
 |sqrt(11) x | ![](../media/y60.png) | -sqrt(7) x |![](../media/y65.png) | + sqrt(7) x |![](../media/y6_5.png) | = |![](../media/saf6_animation.gif) |
 
 This is a test for this bullshit
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+![formula](https://render.githubusercontent.com/render/math?math=e^{i\pi}=-1)
