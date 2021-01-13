@@ -26,7 +26,7 @@ ejovo.saf.animateSAF(6); % Animate the linear combination for SAF6
 
 ```
 
-Here is a table that contains all the SAFs included in this package. Icosahedral symmetry demands the presence of a symmetry axes of degree 5, 3, and 2.
+Here is a table that contains all the SAFs included in this package. Icosahedral symmetry demands the presence of symmetry axes of degree 5, 3, and 2.
 
 | Degree | 5-fold | 3-fold | 2-fold | SAF |
 | --- | --- | --- | --- | --- |
