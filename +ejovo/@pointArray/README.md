@@ -18,3 +18,4 @@ We can decompose this point array to view the symmetry of it's distinct radial l
 p1 = Mvpa(1); % Array of 569 pointArray objects created by affine extensions
 p1.plotRadialLevels;
 ```
+![](../media/radial_levels.png)
