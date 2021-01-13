@@ -15,3 +15,5 @@ The following table shows modes computed with NMFF for Bacteriophage MS2 and the
 | ![](+ejovo/media/2ms2m5-2fold.gif) | ![](+ejovo/media/saf10.png) | ![](+ejovo/media/2ms2SAF10-2fold.gif) |
 
 It's pretty easy to tell that for the first two normal modes, the actual computed oscillations line up **incredibly** well with the radial displacements predicted by each SAF. The first mode has uniform contraction and expansion, which we refer to as the *breathing* mode. For the second normal mode, we see the largest radial displacement ocurring along the 5-fold symmetry axes, which lines up with the SAF predicted mode.
+
+The generation and manipulation of SAFs is at the **heart** of this project and my research, so I highly encourage you to check out the +saf package located in the +ejovo directory. If you are interested in the details and numerical analysis of virus normal mode decomposition, check out my senior thesis: [Decomposition of Virus Normal Modesinto Spherical Harmonics](+ejovo/media/SIP.pdf)
