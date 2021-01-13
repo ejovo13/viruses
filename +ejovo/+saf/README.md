@@ -28,16 +28,16 @@ ejovo.saf.animateSAF(6); % Animate the linear combination for SAF6
 
 Here is a table that contains all the SAFs included in this package. Icosahedral symmetry demands the presence of a symmetry axes of degree 5, 3, and 2.
 
-| 5-fold | 3-fold | 2-fold | SAF |
-| --- | --- | --- | --- |
-| ![](../media/safs/saf6_5.png) | ![](../media/safs/saf6_3.png) | ![](../media/safs/saf6_2.png) | ![](../media/saf6_animation.gif) |
-| ![](../media/safs/saf10_5.png) | ![](../media/safs/saf10_3.png) | ![](../media/safs/saf10_2.png) | ![](../media/safs/saf10.gif) |
-| ![](../media/safs/saf12_5.png) | ![](../media/safs/saf12_3.png) | ![](../media/safs/saf12_2.png) | ![](../media/safs/saf12.gif) |
-| ![](../media/safs/saf16_5.png) | ![](../media/safs/saf16_3.png) | ![](../media/safs/saf16_2.png) | ![](../media/safs/saf16.gif) |
-| ![](../media/safs/saf18_5.png) | ![](../media/safs/saf18_3.png) | ![](../media/safs/saf18_2.png) | ![](../media/safs/saf18.gif) |
-| ![](../media/safs/saf20_5.png) | ![](../media/safs/saf20_3.png) | ![](../media/safs/saf20_2.png) | ![](../media/safs/saf20.gif) |
-| ![](../media/safs/saf22_5.png) | ![](../media/safs/saf22_3.png) | ![](../media/safs/saf22_2.png) | ![](../media/safs/saf22.gif) |
-| ![](../media/safs/saf24_5.png) | ![](../media/safs/saf24_3.png) | ![](../media/safs/saf24_2.png) | ![](../media/safs/saf24.gif) |
-| ![](../media/safs/saf26_5.png) | ![](../media/safs/saf26_3.png) | ![](../media/safs/saf26_2.png) | ![](../media/safs/saf26.gif) |
-| ![](../media/safs/saf28_5.png) | ![](../media/safs/saf28_3.png) | ![](../media/safs/saf28_2.png) | ![](../media/safs/saf28.gif) |
-| ![](../media/safs/saf30_5.png) | ![](../media/safs/saf30_3.png) | ![](../media/safs/saf30_2.png) | ![](../media/safs/saf30.gif) |
+| Degree | 5-fold | 3-fold | 2-fold | SAF |
+| --- | --- | --- | --- | --- |
+| 6 | ![](../media/safs/saf6_5.png) | ![](../media/safs/saf6_3.png) | ![](../media/safs/saf6_2.png) | ![](../media/saf6_animation.gif) |
+| 10 | ![](../media/safs/saf10_5.png) | ![](../media/safs/saf10_3.png) | ![](../media/safs/saf10_2.png) | ![](../media/safs/saf10.gif) |
+| 12 | ![](../media/safs/saf12_5.png) | ![](../media/safs/saf12_3.png) | ![](../media/safs/saf12_2.png) | ![](../media/safs/saf12.gif) |
+| 16 | ![](../media/safs/saf16_5.png) | ![](../media/safs/saf16_3.png) | ![](../media/safs/saf16_2.png) | ![](../media/safs/saf16.gif) |
+| 18 | ![](../media/safs/saf18_5.png) | ![](../media/safs/saf18_3.png) | ![](../media/safs/saf18_2.png) | ![](../media/safs/saf18.gif) |
+| 20 | ![](../media/safs/saf20_5.png) | ![](../media/safs/saf20_3.png) | ![](../media/safs/saf20_2.png) | ![](../media/safs/saf20.gif) |
+| 22 | ![](../media/safs/saf22_5.png) | ![](../media/safs/saf22_3.png) | ![](../media/safs/saf22_2.png) | ![](../media/safs/saf22.gif) |
+| 24 | ![](../media/safs/saf24_5.png) | ![](../media/safs/saf24_3.png) | ![](../media/safs/saf24_2.png) | ![](../media/safs/saf24.gif) |
+| 26 | ![](../media/safs/saf26_5.png) | ![](../media/safs/saf26_3.png) | ![](../media/safs/saf26_2.png) | ![](../media/safs/saf26.gif) |
+| 28 | ![](../media/safs/saf28_5.png) | ![](../media/safs/saf28_3.png) | ![](../media/safs/saf28_2.png) | ![](../media/safs/saf28.gif) |
+| 30 | ![](../media/safs/saf30_5.png) | ![](../media/safs/saf30_3.png) | ![](../media/safs/saf30_2.png) | ![](../media/safs/saf30.gif) |
