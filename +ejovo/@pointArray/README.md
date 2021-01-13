@@ -12,6 +12,7 @@ The point array class is a MATLAB implementation to model these structures. We c
 | 3-d view | rotated about X-axis | rotated about y-axis | rotated about z-axis |
 | --- | --- | --- | --- |
 | ![](../media/p1.png) | ![](../media/p1x.gif) | ![](../media/p1y.gif) | ![](../media/p1z.gif) |
+photos taken from David Wilson's [website](http://people.kzoo.edu/dwilson/point_arrays.html)
 
 We can decompose this point array to view the symmetry of it's distinct radial levels using the *plotRadialLevels* class method:
 ```MATLAB
