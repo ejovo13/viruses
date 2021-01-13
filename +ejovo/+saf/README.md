@@ -29,7 +29,7 @@ ejovo.saf.animateSAF(6); % Animate the linear combination for SAF6
 Here is a table that contains all the SAFs included in this package. Icosahedral symmetry demands the presence of symmetry axes of degree 5, 3, and 2.
 
 | Degree | 5-fold | 3-fold | 2-fold | SAF |
-| [---] | --- | --- | --- | --- |
+| :---: | --- | --- | --- | --- |
 | 6 | ![](../media/safs/saf6_5.png) | ![](../media/safs/saf6_3.png) | ![](../media/safs/saf6_2.png) | ![](../media/saf6_animation.gif) |
 | 10 | ![](../media/safs/saf10_5.png) | ![](../media/safs/saf10_3.png) | ![](../media/safs/saf10_2.png) | ![](../media/safs/saf10.gif) |
 | 12 | ![](../media/safs/saf12_5.png) | ![](../media/safs/saf12_3.png) | ![](../media/safs/saf12_2.png) | ![](../media/safs/saf12.gif) |
