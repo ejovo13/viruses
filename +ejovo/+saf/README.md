@@ -14,6 +14,30 @@ Where Y is the Laplacian spherical harmonic, the subscript is the degree, and th
 
 We can make these plots using the functions contained in the SAF package.
 
+```MATLAB
+l = 1; % Degree
+m = 0; % Order
 
-**this is bold**
-*this is italic*
+ejovo.saf.plotRealHarmonic(l, m); % Plot real spherical harmonic with degree = 1 and order = 0
+ejovo.saf.plotHarmonic(l, m); % Plot the real and imaginary values of spherical harmonic with degree = 1 and order = 0
+
+ejovo.saf.plotSAF(6); % Plot SAF made from linear combination of spherical harmonics of degree 6
+ejovo.saf.animateSAF(6); % Animate the linear combination for SAF6
+
+```
+
+Here is a table that contains all the SAFs included in this package. Icosahedral symmetry demands the presence of a symmetry axes of degree 5, 3, and 2.
+
+| 5-fold | 3-fold | 2-fold | SAF |
+| --- | --- | --- | --- |
+| ![](../media/safs/saf6_5.png) | ![](../media/safs/saf6_3.png) | ![](../media/safs/saf6_2.png) | ![](../media/saf6_animation.gif) |
+| ![](../media/safs/saf10_5.png) | ![](../media/safs/saf10_3.png) | ![](../media/safs/saf10_2.png) | ![](../media/safs/saf10.gif) |
+| ![](../media/safs/saf12_5.png) | ![](../media/safs/saf12_3.png) | ![](../media/safs/saf12_2.png) | ![](../media/safs/saf12.gif) |
+| ![](../media/safs/saf16_5.png) | ![](../media/safs/saf16_3.png) | ![](../media/safs/saf16_2.png) | ![](../media/safs/saf16.gif) |
+| ![](../media/safs/saf18_5.png) | ![](../media/safs/saf18_3.png) | ![](../media/safs/saf18_2.png) | ![](../media/safs/saf18.gif) |
+| ![](../media/safs/saf20_5.png) | ![](../media/safs/saf20_3.png) | ![](../media/safs/saf20_2.png) | ![](../media/safs/saf20.gif) |
+| ![](../media/safs/saf22_5.png) | ![](../media/safs/saf22_3.png) | ![](../media/safs/saf22_2.png) | ![](../media/safs/saf22.gif) |
+| ![](../media/safs/saf24_5.png) | ![](../media/safs/saf24_3.png) | ![](../media/safs/saf24_2.png) | ![](../media/safs/saf24.gif) |
+| ![](../media/safs/saf26_5.png) | ![](../media/safs/saf26_3.png) | ![](../media/safs/saf26_2.png) | ![](../media/safs/saf26.gif) |
+| ![](../media/safs/saf28_5.png) | ![](../media/safs/saf28_3.png) | ![](../media/safs/saf28_2.png) | ![](../media/safs/saf28.gif) |
+| ![](../media/safs/saf30_5.png) | ![](../media/safs/saf30_3.png) | ![](../media/safs/saf30_2.png) | ![](../media/safs/saf30.gif) |
