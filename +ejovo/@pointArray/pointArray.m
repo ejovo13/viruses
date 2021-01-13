@@ -105,7 +105,7 @@ classdef pointArray
                 ncols = nlevels/2 + .5;
             end
             
-            figure('Name', ['Point array # ', num2str(pointArray.id)])            
+            figure('Name', ['Point array # ', num2str(pointArray.index)])            
             for qq = 1:nlevels 
                 subplot(2, ncols, qq)
                 nVer = length(pointArray.distinctPlots{qq});
@@ -157,7 +157,7 @@ classdef pointArray
         function toXYZ(pointArray)
         %TOXYZ creates an xyz file for a point array at all levels
             folderName = strcat('+ejovo/pa_output/');
-            paName = strcat('pa', pointArray.index);
+            paName = strcat('pa', num2str(pointArray.index));
             ejovo.fn.toXYZ(pointArray.coords, paName, folderName, 'H');
         end
         
