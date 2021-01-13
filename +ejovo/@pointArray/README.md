@@ -8,8 +8,13 @@ Point Arrays are icosahedral structures that extend symmetry along the radial le
 
 ## @pointArray
 
-The point array class is a MATLAB implementation to model these structures. We can classify each array, combine arrays, and decompose them by their radii to examine radial symmetry. Take for example the 2phi IDD5 point array (middle column) that was build in MATLAB, and then exported to vmd for viewing:
+The point array class is a MATLAB implementation to model these structures. We can classify each array, combine arrays, and decompose them by their radii to examine radial symmetry. Take for example the 2phi IDD5 point array (middle column in the above table) that was built in MATLAB, and then exported to vmd for viewing:
 | 3-d view | rotated about X-axis | rotated about y-axis | rotated about z-axis |
 | --- | --- | --- | --- |
 | ![](../media/p1.png) | ![](../media/p1x.gif) | ![](../media/p1y.gif) | ![](../media/p1z.gif) |
 
+We can decompose this point array to view the symmetry of it's distinct radial levels using the *plotRadialLevels* class method:
+```MATLAB
+p1 = Mvpa(1); % Array of 569 pointArray objects created by affine extensions
+p1.plotRadialLevels;
+```
