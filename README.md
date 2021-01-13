@@ -10,6 +10,6 @@ The following table shows modes computed with NMFF for Bacteriophage MS2 and the
 
 | Computed Mode | SAF with highest overlap | SAF generated mode |
 | ---- | --- | ---- |
-| ![](+ejovo/media/2ms2m1-2fold.gif) | ![](+ejovo/media/SAF0.png) | ![](+ejovo/media/2ms2SAF0-2fold.gif) | 
-| ![](+ejovo/media/2ms2m2-2fold.gif) | ![](+ejovo/media/SAF6.png) | ![](+ejovo/media/2ms2SAF62-fold.gif) |
-| ![](+ejovo/media/2ms2m5-2fold.gif) | ![](+ejovo/media/SAF10.png) | ![](+ejovo/media/2ms2SAF10-2fold.gif) |
+| ![](+ejovo/media/2ms2m1-2fold.gif) | ![](+ejovo/media/saf0.png) | ![](+ejovo/media/2ms2SAF0-2fold.gif) | 
+| ![](+ejovo/media/2ms2m2-2fold.gif) | ![](+ejovo/media/saf6.png) | ![](+ejovo/media/2ms2SAF62-fold.gif) |
+| ![](+ejovo/media/2ms2m5-2fold.gif) | ![](+ejovo/media/saf10.png) | ![](+ejovo/media/2ms2SAF10-2fold.gif) |
