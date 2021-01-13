@@ -13,3 +13,5 @@ The following table shows modes computed with NMFF for Bacteriophage MS2 and the
 | ![](+ejovo/media/2ms2m1-2fold.gif) | ![](+ejovo/media/saf0.png) | ![](+ejovo/media/2ms2SAF0-2fold.gif) | 
 | ![](+ejovo/media/2ms2m2-2fold.gif) | ![](+ejovo/media/saf6.png) | ![](+ejovo/media/2ms2SAF62-fold.gif) |
 | ![](+ejovo/media/2ms2m5-2fold.gif) | ![](+ejovo/media/saf10.png) | ![](+ejovo/media/2ms2SAF10-2fold.gif) |
+
+It's pretty easy to tell that for the first two normal modes, the actual computed oscillations line up **incredibly** well with the radial displacements predicted by each SAF. The first mode has uniform contraction and expansion, which we refer to as the *breathing* mode. For the second normal mode, we see the largest radial displacement ocurring along the 5-fold symmetry axes, which lines up with the SAF predicted mode.
