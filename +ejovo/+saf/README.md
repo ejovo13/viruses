@@ -6,9 +6,9 @@ Let's explore this package by checking out SAF6. According to the algorithm outl
 
 ![](../media/saf6_formula.png)
 
-Where Y is the Laplacian spherical harmonic, the subscript is the degree, and the exponent is the order. This will be encoded as Y(l, m), where l = degree and m = order.
+Where Y is the Laplacian spherical harmonic, the subscript is the degree, and the exponent is the order. This will be encoded as Y(l, m) in the following table, where l = degree and m = order.
 
-| Y(6, 0) | Y(6, +5) | Y(6 -5) | SAF6 |
+| sqrt(11) * Y(6, 0) | - sqrt(7) * Y(6, +5) | + aqrt(7) * Y(6 -5) |  = SAF6 |
 | --- | --- | --- | --- |
 | ![](../media/y60.png) |![](../media/y65.png) | ![](../media/y6_5.png) | ![](../media/saf6_animation.gif) |
 
