@@ -7,7 +7,8 @@ phi = linspace(0,2*pi,250); % azimuth
 Y = ejovo.saf.harmonicY(n,m,th,phi, 'type', 'real');
 % plot the magnitude
 r = abs(Y);
-[x,y,z] = sph2cart(phi,pi/2-th,r);
-surf(x,y,z,r);
+[x,y,z] = sph2cart(phi,pi/2-th,Y);
+surf(x,y,z,Y);
 axis equal
 shading interp
+set(gca, 'Visible', 'off')

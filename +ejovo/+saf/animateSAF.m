@@ -46,9 +46,10 @@ else
     perms = 1:iterations;
 end
 
-figure
+figure('units','normalized','outerposition',[0 0 1 1])
 s = surface(zero, zero, zero, zero);
-
+colormap jet
+colorbar
 
 hold on
 axis([-1 1 -1 1 -1 1])
@@ -57,11 +58,12 @@ shading interp
 camzoom(1.3)
 view(40,30)
 for jj = perms
-    [xj, yj, zj] = sph2cart(phi,pi/2-th,Y(:,:,jj)*norm*scale);
+    r = Y(:,:,jj)*norm*scale;
+    [xj, yj, zj] = sph2cart(phi,pi/2-th,r);
     xj = xj/numSteps;
     yj = yj/numSteps;
     zj = zj/numSteps;
-    C = Y(:,:,jj)/numSteps;
+    C = r/numSteps;
     pTime = .1/numSteps/iterations;
     for ii = 1:numSteps         
         %Update XYZ coordinates to create an animation
