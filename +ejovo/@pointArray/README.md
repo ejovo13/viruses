@@ -19,3 +19,8 @@ p1 = Mvpa(1); % Array of 569 pointArray objects created by affine extensions
 p1.plotRadialLevels;
 ```
 ![](../media/radial_levels.png)
+
+This function call breaks down the point array into its radial levels. We are viewing the radial levels of these 3d point arrays from the xy-plane. The title of each subfigure indicates the relative scale of the radius and the number of points found in that radial level. The color of the points indicates the shape of the radial level. Red = icosahedron. Blue = dodecahedron. Yellow = Icosidodecahedron. Black points mean that the shape at the radial level is not one of the base icosahedrons, and instead is one of the other icosahedral Archimedean solids.
+![](../media/point_array_classification.png)
+
+For more information about the geometries of point arrays, check out this paper: [An Exploration of Point Array Geometries](../media/MC2_PointArrayAnalysis_EvanVoyles.pdf)
