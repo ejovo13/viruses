@@ -8,8 +8,12 @@ Let's explore this package by checking out SAF6. According to the algorithm outl
 
 Where Y is the Laplacian spherical harmonic, the subscript is the degree, and the exponent is the order. This will be encoded as Y(l, m) in the following table, where l = degree and m = order.
 
-| This is a test |  SAF6 |
+| Linear Combination |  SAF6 |
 | --- | --- |
 |![](../media/spherical_combination.png)  | ![](../media/saf6_animation.gif) |
 
-This is a test for this bullshit
+We can make these plots using the functions contained in the SAF package.
+
+
+**this is bold**
+*this is italic*
