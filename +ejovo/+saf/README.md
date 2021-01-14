@@ -41,3 +41,5 @@ Here is a table that contains all the SAFs included in this package. Icosahedral
 | 26 | ![](../media/safs/saf26_5.png) | ![](../media/safs/saf26_3.png) | ![](../media/safs/saf26_2.png) | ![](../media/safs/saf26.gif) |
 | 28 | ![](../media/safs/saf28_5.png) | ![](../media/safs/saf28_3.png) | ![](../media/safs/saf28_2.png) | ![](../media/safs/saf28.gif) |
 | 30 | ![](../media/safs/saf30_5.png) | ![](../media/safs/saf30_3.png) | ![](../media/safs/saf30_2.png) | ![](../media/safs/saf30.gif) |
+
+plots were made using the "jet" colormap, such that high positive values correspond to red and the most negative values are represented by dark blue.
