@@ -60,6 +60,65 @@ methods
             set(gca, 'visible', 'off');
         end
     end 
+    
+    function plotPos(this, visible)
+        
+        if nargin == 1
+            visible = true;
+        end
+        
+        posY = this.getPos;
+        
+        [x,y,z] = sph2cart(this.phi,pi/2-this.th,posY);
+        s = surf(x,y,z,this.Y);
+        axis equal
+        axis square
+        shading interp
+        colormap jet
+        title("Positive")
+        if ~visible
+            set(gca, 'visible', 'off');
+        end      
+        
+    end 
+    
+    
+    function plotNeg(this, visible)
+        
+        if nargin == 1
+            visible = true;
+        end
+        
+        negY = this.getNeg;
+        
+        [x,y,z] = sph2cart(this.phi,pi/2-this.th,negY);
+        s = surf(x,y,z,this.Y);
+        axis equal
+        axis square
+        shading interp
+        colormap jet
+        title("Negative")
+        if ~visible
+            set(gca, 'visible', 'off');
+        end        
+    end 
+    
+    function plotAll(this, visible)
+       
+        if nargin == 1
+            visible = true;
+        end
+        
+        tiledlayout(1,3)
+        nexttile 
+        this.plotPos(visible)
+        nexttile
+        this.plotNeg(visible)
+        nexttile
+        this.plot(visible)
+        
+        
+    end
 
     function plotSymmetries(this, visible)
 
@@ -100,6 +159,22 @@ methods
         p = norm(obj.Y);
 
     end
+    
+    function posY = getPos(obj)
+        
+        posY = obj.Y;
+        posY(posY < 0) = 0;
+        
+    end
+    
+    function negY = getNeg(obj)
+        
+        negY = obj.Y;
+        negY(negY> 0) = 0;
+        
+    end 
+    
+    
     
     % Getter and setter methods
     
@@ -161,7 +236,7 @@ methods (Static)
         L = [0, 6, 10, 12, 15, 16, 18, 20, 22, 24, 26, 28, 30, 31];
     end 
 
-    function [all, t] = plotAll
+    function [all, t] = plotAllSAF
 
         L = [0, 6, 10, 12, 16, 18, 20, 22, 24, 26, 28, 30, 31];
         numToBuild = length(L);
