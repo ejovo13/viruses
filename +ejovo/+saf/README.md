@@ -43,3 +43,57 @@ Here is a table that contains all the SAFs included in this package. Icosahedral
 | 30 | ![](../media/safs/saf30_5.png) | ![](../media/safs/saf30_3.png) | ![](../media/safs/saf30_2.png) | ![](../media/safs/saf30.gif) |
 
 plots were made using the "jet" colormap, such that high positive values correspond to red and the most negative values are represented by dark blue.
+
+### Alternative Representation.
+
+We can further elucidate the symmetry of these structures by coloring the radial output of each SAF on the surface of a sphere.
+
+I've introduced a new saf class which allows me to better manipulate the addition of SAFs.
+To instantiate an SAF object, simply pass the degree that you would like for the argument:
+
+```MATLAB
+s6 = ejovo.v.saf(6); % Create new SAF with degree 6.
+s10 = ejovo.v.saf(10);
+s12 = ejovo.v.saf(12);
+s26 = ejovo.v.saf(26);
+```
+
+We can plot these SAFs calling the plot member function. What's more interesting, however, is creating new SAF objects by simple combination:
+
+```MATLAB
+s_new = s6 + s12;
+s_new.plot();
+```
+
+![](../media/safs/saf6_plus_12.png)
+
+```MATLAB
+s_new = s10 + s26;
+s_new.plot();
+```
+
+![](../media/safs/saf10_plus_26.png)
+
+I've also introduced a new way of visualizing the SAFs by coloring the radial component onto a surface of a sphere. To do so, we can simply call the **surf** function:
+
+```MATLAB
+surf(s10 + s26);
+```
+
+![](../media/safs/saf10_plus_26_surf.png)
+
+```MATLAB
+surf(s6 + s12);
+```
+
+![](../media/safs/saf6_plus_12_surf.png)
+
+To visualize all of the SAFs on the surface, we can simply call the static function **surfALL**:
+
+```MATLAB
+ejovo.v.saf.surfAll();
+```
+
+![](../media/safs/all_safs_surface.png)
+
+
