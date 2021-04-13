@@ -96,4 +96,36 @@ ejovo.v.saf.surfAll();
 
 ![](../media/safs/all_safs_surface.png)
 
+# Just for fun
+
+Now that we have an saf class in place, an addition operator overload, and a mechanism to visualize them, we can start to have some nonsensical fun. I played around with MATLAB's gui editor to come up with the following simple (and ugly, I'm not a graphic artist lol) gui:
+
+![](../media/sample_gui.png)
+
+The idea is that we can start with a base SAF and add a random combination of the other SAFs to generate some funky visuals.
+
+Let's set the number of combinations to 5 and play around with the resulting combinations by clicking the **Random Combination** button:
+
+![](../media/random1.png)
+![](../media/random2.png)
+![](../media/random3.png)
+![](../media/random4.png)
+![](../media/fun1.png)
+![](../media/random5.png)
+
+We can do something really fun and subtract SAF0 (Just a sphere) from each base SAF to see how "aspherical" the SAF really is. These visualizations are by far my favorite.
+
+Setting the value of of the **#s0** field to 10, here are the resulting visualizations, starting from SAF6 - 10 * SAF0 to SAF30 - 10 * SAF0.
+
+![](../media/6_minus0.png)
+![](../media/10_minus0.png)
+![](../media/12_minus0.png)
+![](../media/16_minus0.png)
+![](../media/18_minus0.png)
+![](../media/20_minus0.png)
+![](../media/22_minus0.png)
+![](../media/24_minus0.png)
+![](../media/26_minus0.png)
+![](../media/28_minus0.png)
+![](../media/30_minus0.png)
 

@@ -109,13 +109,15 @@ methods
             visible = true;
         end
         
-        tiledlayout(1,3)
+        tiledlayout(1,4)
         nexttile 
         this.plotPos(visible)
         nexttile
         this.plotNeg(visible)
         nexttile
-        this.plot(visible)        
+        this.plot(visible) 
+        nexttile
+        this.surf;
         
     end
 
@@ -125,7 +127,7 @@ methods
             visible = true;
         end
 
-        t = tiledlayout(1,4);
+        t = tiledlayout(1,3);
         f = gcf;
         name = string(this.degree);
         set(f, "Name", strcat("SAF", name));
@@ -141,8 +143,6 @@ methods
         this.plot(visible)
         title("2-fold")
         ejovo.saf.two
-        nexttile
-        this.plot
 
     end 
 
@@ -158,7 +158,7 @@ methods
         axis square
         shading interp
         colormap jet
-        title(string(this.degree))
+        title("surface")
         if ~visible
             set(gca, 'visible', 'off');
         end
