@@ -115,8 +115,7 @@ methods
         nexttile
         this.plotNeg(visible)
         nexttile
-        this.plot(visible)
-        
+        this.plot(visible)        
         
     end
 
@@ -146,6 +145,26 @@ methods
         this.plot
 
     end 
+
+    function surf(this, visible)
+        
+        if nargin == 1
+            visible = true;
+        end
+        
+        [x,y,z] = sph2cart(this.phi,pi/2-this.th,1);
+        s = surf(x,y,z,this.Y);
+        axis equal
+        axis square
+        shading interp
+        colormap jet
+        title(string(this.degree))
+        if ~visible
+            set(gca, 'visible', 'off');
+        end
+
+
+    end
 
     
     function obj = normalize(obj)
@@ -253,13 +272,20 @@ methods (Static)
             title(string(all(ii).degree))
         end 
 
-
-
-
-
-
-
     end 
+
+    function surfAll
+
+        L = [0, 6, 10, 12, 16, 18, 20, 22, 24, 26, 28, 30, 31];
+        numToBuild = length(L);
+        load('/home/ejovo13/Programming/MATLAB/Viruses/ejovotest/+ejovo/+saf/SAFs.mat');
+        t = tiledlayout(2,7);
+        for ii = 1:numToBuild            
+            nexttile
+            SAF(ii).surf;
+        end 
+
+    end
 
 end
 
