@@ -299,6 +299,11 @@ classdef virus
             sipVirus = safVirus.toSIP;
         end        
         
+        function [admissible, values] = franken(virus)
+            
+                    
+        end
+        
     end
     
 end
