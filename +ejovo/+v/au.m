@@ -21,5 +21,11 @@ classdef au < ejovo.v.virus
             sipAU = safAU.toSIP;
         end 
         
+        function [admissible, values] = franken(au)
+            
+            [admissible, values] = ejovo.v.fn_frankencode(au);
+                    
+        end
+        
     end
 end
