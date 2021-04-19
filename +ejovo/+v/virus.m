@@ -100,7 +100,9 @@ classdef virus
             
             %Set pdbid
             virus.pdbid = convertCharsToStrings(varargin{1});   
-            
+
+
+            working_directory = pwd;
             %Load coordinates 
             if loadCoordinates 
                 %Download pdb
@@ -120,7 +122,7 @@ classdef virus
                 virus.app = app;
                 disp([int2str(numAtoms) ' Atoms loaded successfully']);                
             end              
-            ejovo.fn.cd2pkg
+            cd(working_directory);
             
             %sets coordinates            
             virus = virus.setCoords(XYZ);          
