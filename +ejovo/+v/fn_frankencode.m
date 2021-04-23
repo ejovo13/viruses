@@ -1,4 +1,4 @@
-function [ADMISSIBLE_PA, FRANKEN_OUTPUT] = fn_frankencode(EJOVO_VIRUS)
+function [RESULTS, ADMISSIBLE_PA, FRANKEN_OUTPUT] = fn_frankencode(EJOVO_VIRUS)
 display("Calling Franken Function")
 
 % Set initial variables
@@ -569,6 +569,7 @@ G = G';
 disp('Done.')
 %disp('Done ... time for fancier pcount?')    
 
-FRANKEN_OUTPUT = sortrows(G,2);
-ADMISSIBLE_PA = admissible;
+RESULTS = results;
+FRANKEN_OUTPUT = sortrows(G,2)
+ADMISSIBLE_PA = admissible
 
