@@ -36,6 +36,13 @@ ejovo.fn.extractCoords(pdbFile);
 [Tnum, app] = ejovo.fn.getCapsidInfo(pdbFile);
 
 %move the file and delete the previous versions
+auFolder = "../au";
+
+if (~exist(auFolder, "dir")) 
+    mkdir(auFolder)
+end
+
+
 xyzAU = strcat('xyz.', pdbFile);
 movefile(xyzAU, '../au')
 delete(pdbFile)

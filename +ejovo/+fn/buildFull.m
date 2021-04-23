@@ -43,6 +43,13 @@ fullFile = strcat('full_', pdbFile);
 ejovo.fn.extractCoords(fullFile);
 
 %move the file and delete the previous versions
+fullFolder = "../full";
+
+if (~exist(fullFolder, "dir")) 
+    mkdir(fullFolder)
+end
+
+
 xyzFull = strcat('xyz.', fullFile);
 movefile(xyzFull, '../full')
 delete(pdbFile)
