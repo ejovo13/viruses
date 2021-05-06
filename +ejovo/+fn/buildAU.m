@@ -1,4 +1,4 @@
-function [Tnum, app] = buildAU(pdbid)
+function buildAU(pdbid)
 %BUILDAU - Build an AU coordinate file when given a 'pdbid'
 %
 %Syntax:
@@ -29,11 +29,14 @@ startDir = pwd;
 ejovo.fn.cd2pkg;
 cd +v/coordinates/pdb
 
-
+% au_coords_file = strcat("../../pdb/au/", pdbid, ".pdb");
 pdbFile = strcat(pdbid, '.pdb');
+
+% copyfile(au_coords_file, pdbFile)
+
 ejovo.fn.extractCoords(pdbFile);
 
-[Tnum, app] = ejovo.fn.getCapsidInfo(pdbFile);
+% [Tnum, app] = ejovo.fn.getCapsidInfo(pdbFile);
 
 %move the file and delete the previous versions
 auFolder = "../au";
@@ -42,9 +45,8 @@ if (~exist(auFolder, "dir"))
     mkdir(auFolder)
 end
 
-
 xyzAU = strcat('xyz.', pdbFile);
 movefile(xyzAU, '../au')
-delete(pdbFile)
+% delete(pdbFile)
 cd(startDir);
 end

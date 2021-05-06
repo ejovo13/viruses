@@ -23,7 +23,8 @@ startDir = pwd;
 prefix = 'xyz.full_';
 extension = '.pdb';
 fileName = strcat('+ejovo/+v/coordinates/full/', prefix, pdbid, extension);
-disp(strcat({'The file name is '}, fileName));
+
+fprintf(strcat("The file name is: ", fileName, "\n"))
 
 ejovo.fn.cd2parent;
 XYZ = importdata(fileName);

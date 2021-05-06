@@ -25,7 +25,8 @@ startDir = pwd;
 prefix = 'xyz.';
 extension = '.pdb';
 fileName = strcat('+ejovo/+v/coordinates/au/', prefix, pdbid, extension);
-disp(['The file name is ' fileName]);
+
+fprintf(strcat("The file name is: ", fileName, "\n"))
 
 ejovo.fn.cd2parent;
 XYZ = importdata(fileName);

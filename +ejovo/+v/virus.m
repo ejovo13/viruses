@@ -72,6 +72,9 @@ classdef virus
     
     properties (Hidden)               
        atoms
+       franken_results
+       franken_admissible
+       franken_output
     end
     
     properties (Hidden, Constant)
@@ -106,15 +109,15 @@ classdef virus
             %Load coordinates 
             if loadCoordinates 
                 %Download pdb
-                ejovo.fn.downloadPDB(virus.pdbid);
+                [Tnum, app] = ejovo.fn.downloadPDB(virus.pdbid);
                 if isau(virus)
-                    disp('Building AU coordinates')                    
-                    [Tnum, app] = ejovo.fn.buildAU(virus.pdbid);
+                    % disp('Building AU coordinates')                    
+                    % [Tnum, app] = ejovo.fn.buildAU(virus.pdbid);
                     disp('Attempting to import AU coordinates...');
                     [XYZ, numAtoms] = ejovo.fn.importCoordinatesAU(virus.pdbid);
                 else
-                    disp('Building full coordinates')
-                    [Tnum, app] = ejovo.fn.buildFull(virus.pdbid);
+                    % disp('Building full coordinates')
+                    % [Tnum, app] = ejovo.fn.buildFull(virus.pdbid);
                     disp('Attempting to import full virus coordinates...');
                     [XYZ, numAtoms] = ejovo.fn.importCoordinatesFull(virus.pdbid);
                 end

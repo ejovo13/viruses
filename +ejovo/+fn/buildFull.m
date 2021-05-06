@@ -1,4 +1,4 @@
-function [Tnum, app] = buildFull(pdbid)
+function buildFull(pdbid)
 %BUILDFULL - Build a full coordinate file when given a 'pdbid'
 %
 %Syntax:
@@ -34,7 +34,7 @@ cd +v/coordinates/pdb
 
 pdbFile = strcat(pdbid, '.pdb');
 
-[Tnum, app] = ejovo.fn.getCapsidInfo(pdbFile);
+% [Tnum, app] = ejovo.fn.getCapsidInfo(pdbFile);
 
 
 %rotate the pdb file
@@ -52,8 +52,8 @@ end
 
 xyzFull = strcat('xyz.', fullFile);
 movefile(xyzFull, '../full')
-delete(pdbFile)
-delete(fullFile)
+% delete(pdbFile)
+% delete(fullFile)
 cd(startDir);
 
 end
