@@ -68,13 +68,13 @@ classdef virus
         pdbid
         T
         app
+        franken_results
+        franken_admissible
+        franken_output
     end   
     
     properties (Hidden)               
        atoms
-       franken_results
-       franken_admissible
-       franken_output
     end
     
     properties (Hidden, Constant)
