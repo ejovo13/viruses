@@ -71,6 +71,7 @@ classdef virus
         franken_results
         franken_admissible
         franken_output
+        franken_list
     end   
     
     properties (Hidden)               
