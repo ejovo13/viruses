@@ -6,9 +6,9 @@ function extractCoords(fileName)
 %   ejovo.fn.extractCoords(fileName)
 %
 %Inputs:
-%   
+%
 %   fileName - a .pdb file in the form of either xyz.full_'pdbid'.pdb (for
-%   a full virus) or xyz.'pdbid'.pdb (for the au). 
+%   a full virus) or xyz.'pdbid'.pdb (for the au).
 %
 %Ex:
 %
@@ -20,6 +20,7 @@ function extractCoords(fileName)
 %
 %
 %If you get an error, you should ensure that you have perl enabled.
-    numAtoms = perl('extract_coords.pl', fileName);
+    perlCommand = strcat("perl extract_coords.pl ", fileName);
+    numAtoms = system(perlCommand);
     disp(numAtoms)
 end

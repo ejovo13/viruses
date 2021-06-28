@@ -38,14 +38,15 @@ pdbFile = strcat(pdbid, '.pdb');
 
 
 %rotate the pdb file
-perl('makeicos.pl', pdbFile);
+perlCommand = strcat("perl makeicos.pl ", pdbFile);
+system(perlCommand);
 fullFile = strcat('full_', pdbFile);
 ejovo.fn.extractCoords(fullFile);
 
 %move the file and delete the previous versions
 fullFolder = "../full";
 
-if (~exist(fullFolder, "dir")) 
+if (~exist(fullFolder, "dir"))
     mkdir(fullFolder)
 end
 

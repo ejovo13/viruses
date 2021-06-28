@@ -1,7 +1,8 @@
 %GETCAPSIDINFO - Process the T-number and number of atoms per protein from a vdb file
 
 function [Tnum, app] = getCapsidInfo(pdbFile)
-output = perl('pdb_info.pl', pdbFile);
+perlCommand = strcat("perl pdb_info.pl ", pdbFile);
+[~, output] = system(perlCommand);
 tIndex = strfind(output, 'Tnum');
 lastLine = output(tIndex:end);
 
