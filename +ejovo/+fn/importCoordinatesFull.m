@@ -7,7 +7,7 @@ function [XYZ, nAtoms] = importCoordinatesFull(pdbid)
 %
 %Inputs:
 %
-%   pdbid - 4 digit pdbid 
+%   pdbid - 4 digit pdbid string
 %
 %Outputs:
 %
