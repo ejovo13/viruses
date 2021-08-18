@@ -6,8 +6,8 @@ classdef safVirus < ejovo.v.virus
 %
 %   vPDBID = ejovo.v.safVirus('PDBID') is the simplest way to create a virus safVirusect,
 %   provided that there is a pdb coordinate file under the Coordinates
-%   folder. Upon creation, a virus safVirusect will load in any normal modes 
-%   (if they exist) and calculate SAF radial displacements at each atom. 
+%   folder. Upon creation, a virus safVirusect will load in any normal modes
+%   (if they exist) and calculate SAF radial displacements at each atom.
 %   Diagnostic messages while the virus is being instantiated should provide
 %   the user with real-time information about a virus's creation.
 %   When creating single viruses, it is CRUCIAL that you use the naming
@@ -31,19 +31,19 @@ classdef safVirus < ejovo.v.virus
 %       'saf' refers to the orientation that SAFs are calculated in. That
 %       is, with the 5-fold axis aligned with the positive z-axis. 'saf'
 %       orientation can be visualized using the command PLOTSAF. Refer to
-%       the <a href="https://teams.microsoft.com/l/channel/19%3adbe209ba4260495f98d1cf21aa32aa3a%40thread.tacv2/Code?groupId=4c83192e-2e3a-469f-8de7-a3c8352202b5&tenantId=e214b458-c456-45b4-961a-7852355f177a">notes page</a> under the code channel of our virus group to see a 
-%       comparison of vdb and saf orienation. 
-%       See also ejovo.SAF.PLOTSAF 
+%       the <a href="https://teams.microsoft.com/l/channel/19%3adbe209ba4260495f98d1cf21aa32aa3a%40thread.tacv2/Code?groupId=4c83192e-2e3a-469f-8de7-a3c8352202b5&tenantId=e214b458-c456-45b4-961a-7852355f177a">notes page</a> under the code channel of our virus group to see a
+%       comparison of vdb and saf orienation.
+%       See also ejovo.SAF.PLOTSAF
 %
 %       COORDS - a Nx6 table that stores cartesian and spherical
 %       coordinates of a virus.
 %
 %       MODES - a table that stores Hammond and Rizzolo modes
-%   
+%
 %   ejovo.v.safVirus methods:
 %
 %       CHANGECOORDINATES - changes coordinate system between saf and vdb
-%       orientation. Vdb orientation is the standard arrangement of viruses 
+%       orientation. Vdb orientation is the standard arrangement of viruses
 %       found on the VIPER database, where the 2-fold axes are found on the
 %       x, y, and z axes. SAF orientation is the orientation that SAFs are
 %       calculated in, where the 5-fold axis is aligned with the positive z
@@ -66,7 +66,7 @@ classdef safVirus < ejovo.v.virus
 %       decomposition
 %       PLOT - plots the virus in MATLAB
 %       SIGMA - outputs the dot product of a single virus normal mode with
-%       a single SAF. 
+%       a single SAF.
 %       DECOMPOSEMODE - decomposes a single normal mode into all 13 SAFs
 %       ANALYZEALLMODES - decomposes all Hammond and Rizzolo modes (if they
 %       exist) into the 13 SAFs and then stores the result in the property
@@ -86,22 +86,22 @@ classdef safVirus < ejovo.v.virus
 
 
     properties
-        SAF  
-    end   
-    
-    properties %(Hidden)     
-        safOrientation        
+        SAF
+    end
+
+    properties %(Hidden)
+        safOrientation
         frame
-    end    
-        
-    methods        
-        
-        %Normal virus constructor  
+    end
+
+    methods
+
+        %Normal virus constructor
         %safVirus = safVirus(pdbid, XYZ, orientation, SAF)
-        function safVirus = safVirus(varargin) 
-            safVirus = safVirus@ejovo.v.virus(varargin{:});  
-            n = length(varargin);           
-            if n < 4            
+        function safVirus = safVirus(varargin)
+            safVirus = safVirus@ejovo.v.virus(varargin{:});
+            n = length(varargin);
+            if n < 4
                 %Builds virus SAFs.
                 disp(['Attempting to build SAFs at all ' int2str(safVirus.atoms) ' atoms']);
                 safVirus = safVirus.buildVSAF;
@@ -121,16 +121,16 @@ classdef safVirus < ejovo.v.virus
             if strcmp(safVirus.orientation, 'saf')
                 safVirus = safVirus.changeCoordinates;
                 safVirus = safVirus.changeSAF;
-            end                
-            fprintf('\n');              
+            end
+            fprintf('\n');
         end
-        
+
         function safVirus = changeOrientation(safVirus)
         %CHANGECOORDINATES Toggles the coordinates between saf and vdb orientation
              safVirus = safVirus.changeOrientation@ejovo.v.virus;
              safVirus = safVirus.changeSAF;
         end
-       
+
         function safVirus = buildVSAF(safVirus)
         %BUILDVSAF builds all the SAFs for a specific virus
             tic
@@ -146,71 +146,71 @@ classdef safVirus < ejovo.v.virus
             toc
             safVirus.safOrientation = safVirus.orientation;
         end
-        
+
         function SAFN = normalizeSAFs(safVirus)
-        %NORMALIZESAFS Normalize all SAFs 
+        %NORMALIZESAFS Normalize all SAFs
             nSAF = length(safVirus.DEGREE);
             SAFN = cell(1, nSAF);
-            for ii = 1:nSAF                
+            for ii = 1:nSAF
                 SAFN{:} = normalizeSAF(safVirus, safVirus.DEGREE(ii));
-                %safVirus.SAF{:,ii} = normSAF;                
+                %safVirus.SAF{:,ii} = normSAF;
             end
             disp('SAFs normalized');
         end
-        
+
         function safN = normalizeSAF(safVirus, degree)
             index = safVirus.DEGREE == degree;
             thisSAF = safVirus.SAF{:,index};
             norm = sum(dot(thisSAF,thisSAF));
             safN =  thisSAF/sqrt(norm);
         end
-        
-        function safCart = saf2cart(safVirus, safN)                  
-                [x,y,z] = sph2cart(safVirus.coords.TH, safVirus.coords.PH, safN);                
+
+        function safCart = saf2cart(safVirus, safN)
+                [x,y,z] = sph2cart(safVirus.coords.TH, safVirus.coords.PH, safN);
                 safCart = [x y z];
         end
-        
-        
-        
-       
-        function safVirus = setSAF(safVirus, SAF)   
+
+
+
+
+        function safVirus = setSAF(safVirus, SAF)
         %SETSAF - sets the SAF table of a virus.
             varType = "double";
-            repVarType = repmat(varType, [1, 13]);      
+            repVarType = repmat(varType, [1, 13]);
             safTable = table('Size', [safVirus.atoms, 13], 'VariableTypes', repVarType, 'VariableNames', {'SAF0','SAF6', 'SAF10', 'SAF12', 'SAF16', 'SAF18', 'SAF20', 'SAF22', 'SAF24', 'SAF26', 'SAF28', 'SAF30', 'SAF31'});
             for ii = 1:13
                 safTable{:,ii} = SAF(:,ii);
-            end            
+            end
             safVirus.SAF = safTable;
-        end   
-            
+        end
+
         function VSAF = calcSAF(safVirus, degree)
         %VSAF - Build an SAF at every atom
-            VSAF = ejovo.saf.buildSAF(degree, pi/2 - safVirus.coords.PH, safVirus.coords.TH);            
+            VSAF = ejovo.saf.buildSAF(degree, pi/2 - safVirus.coords.PH, safVirus.coords.TH);
         end
-       
+
         function summary(safVirus)
         %SUMMARY provides a visual summary of how the data is stored
         %for a ejovo.v.safVirus
             safVirus.summary@ejovo.v.virus
-            %show first ten SAFs 
+            %show first ten SAFs
             disp('First 10 SAF displacements')
             fprintf('\n')
-            disp(safVirus.SAF(1:10,:))            
+            disp(safVirus.SAF(1:10,:))
         end
-        
+
         function safVirus = changeSAF(safVirus)
         %CHANGESAF Toggle the saf radial values between 'saf' and 'vdb' orientation
-            if strcmp(safVirus.safOrientation, "vdb")       
-                safVirus = rotSAF2saf(safVirus);                
-            else                
+            if strcmp(safVirus.safOrientation, "vdb")
+                safVirus = rotSAF2saf(safVirus);
+            else
                 safVirus = rotSAF2vdb(safVirus);
             end
         end
-            
-            
+
+
         %ROTSAF2SAF rotates all of a viruses SAFs to SAF allignment
-        function safVirus = rotSAF2saf(safVirus)  
+        function safVirus = rotSAF2saf(safVirus)
             for ii = 1:13
                 %convert radial component to cart
                 [X, Y, Z] = sph2cart(safVirus.coords.TH, safVirus.coords.PH, safVirus.SAF{:,ii});
@@ -221,11 +221,11 @@ classdef safVirus < ejovo.v.virus
             end
             safVirus.safOrientation = "saf";
             disp('SAFs rotated back to saf orientation')
-            fprintf('\n');     
+            fprintf('\n');
         end
-        
+
         %ROTSAF2VDB rotates all of a viruses modes to VDB allignment
-        function safVirus = rotSAF2vdb(safVirus)  
+        function safVirus = rotSAF2vdb(safVirus)
             for ii = 1:13
                 %convert radial component to cart
                 [X, Y, Z] = sph2cart(safVirus.coords.TH, safVirus.coords.PH, safVirus.SAF{:,ii});
@@ -236,10 +236,10 @@ classdef safVirus < ejovo.v.virus
             end
             safVirus.safOrientation = "vdb";
             disp('SAFs rotated to vdb orientation')
-            fprintf('\n');     
+            fprintf('\n');
         end
-        
-        
+
+
         %TOAU
         function safAU = toAU(safVirus)
             auAtoms = safVirus.atoms/60;
@@ -247,31 +247,51 @@ classdef safVirus < ejovo.v.virus
             safAU.T = safVirus.T;
             safAU.app = safVirus.app;
         end
-        
+
         %TOBASE
         function virus = toBase(safVirus)
             virus = ejovo.v.virus(safVirus.pdbid, safVirus.coords{:,1:3}, safVirus.orientation);
             virus.T = safVirus.T;
             virus.app = safVirus.app;
         end
-                
+
         %TOSIP
         function sipVirus = toSIP(safVirus)
             sipVirus = ejovo.v.sipVirus(safVirus.pdbid, safVirus.coords{:,1:3}, safVirus.orientation, safVirus.SAF{:,:});
             sipVirus.T = safVirus.T;
             sipVirus.app = safVirus.app;
         end
-        
-        
+
+
         function movie = makeSAFMode(safVirus, modeNum, angstromsPerFrame, numSteps)
-            if nargin < 4                 
-                numSteps = 10;  
-                if nargin < 3                  
+            if nargin < 4
+                numSteps = 10;
+                if nargin < 3
                     angstromsPerFrame = 1;
                 end
             end
             movie = ejovo.v.movieMaker.makeSAFMovie(safVirus, modeNum, angstromsPerFrame, numSteps);
         end
-        
+
+        function SAF = getSAF(safVirus, safDegree)
+        % Get SAF radial displacement values for degree = safDegree
+
+            SAF = safVirus.SAF{:,safDegree==safVirus.DEGREE};
+
+        end
+
+        function SAFN = getSAFN(safVirus, safDegree)
+        % Get normalized SAF
+
+            SAFN = safVirus.normalizeSAF(safDegree);
+
+        end
+
+        function safcart = getSAFcart(safVirus, safDegree)
+
+            safcart = safVirus.saf2cart(safVirus.getSAFN(safDegree));
+
+        end
+
     end
 end
