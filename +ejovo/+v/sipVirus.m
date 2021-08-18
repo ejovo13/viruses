@@ -6,8 +6,8 @@ classdef sipVirus < ejovo.v.safVirus
 %
 %   vPDBID = ejovo.virus('PDBID') is the simplest way to create a virus sipVirusect,
 %   provided that there is a pdb coordinate file under the Coordinates
-%   folder. Upon creation, a virus sipVirusect will load in any normal modes 
-%   (if they exist) and calculate SAF radial displacements at each atom. 
+%   folder. Upon creation, a virus sipVirusect will load in any normal modes
+%   (if they exist) and calculate SAF radial displacements at each atom.
 %   Diagnostic messages while the virus is being instantiated should provide
 %   the user with real-time information about a virus's creation.
 %   When creating single viruses, it is CRUCIAL that you use the naming
@@ -31,19 +31,19 @@ classdef sipVirus < ejovo.v.safVirus
 %       'saf' refers to the orientation that SAFs are calculated in. That
 %       is, with the 5-fold axis aligned with the positive z-axis. 'saf'
 %       orientation can be visualized using the command PLOTSAF. Refer to
-%       the <a href="https://teams.microsoft.com/l/channel/19%3adbe209ba4260495f98d1cf21aa32aa3a%40thread.tacv2/Code?groupId=4c83192e-2e3a-469f-8de7-a3c8352202b5&tenantId=e214b458-c456-45b4-961a-7852355f177a">notes page</a> under the code channel of our virus group to see a 
-%       comparison of vdb and saf orienation. 
-%       See also ejovo.SAF.PLOTSAF 
+%       the <a href="https://teams.microsoft.com/l/channel/19%3adbe209ba4260495f98d1cf21aa32aa3a%40thread.tacv2/Code?groupId=4c83192e-2e3a-469f-8de7-a3c8352202b5&tenantId=e214b458-c456-45b4-961a-7852355f177a">notes page</a> under the code channel of our virus group to see a
+%       comparison of vdb and saf orienation.
+%       See also ejovo.SAF.PLOTSAF
 %
 %       COORDS - a Nx6 table that stores cartesian and spherical
 %       coordinates of a virus.
 %
 %       MODES - a table that stores Hammond and Rizzolo modes
-%   
+%
 %   ejovo.VIRUS methods:
 %
 %       CHANGECOORDINATES - changes coordinate system between saf and vdb
-%       orientation. Vdb orientation is the standard arrangement of viruses 
+%       orientation. Vdb orientation is the standard arrangement of viruses
 %       found on the VIPER database, where the 2-fold axes are found on the
 %       x, y, and z axes. SAF orientation is the orientation that SAFs are
 %       calculated in, where the 5-fold axis is aligned with the positive z
@@ -66,7 +66,7 @@ classdef sipVirus < ejovo.v.safVirus
 %       decomposition
 %       PLOT - plots the virus in MATLAB
 %       SIGMA - outputs the dot product of a single virus normal mode with
-%       a single SAF. 
+%       a single SAF.
 %       DECOMPOSEMODE - decomposes a single normal mode into all 13 SAFs
 %       ANALYZEALLMODES - decomposes all Hammond and Rizzolo modes (if they
 %       exist) into the 13 SAFs and then stores the result in the property
@@ -85,36 +85,38 @@ classdef sipVirus < ejovo.v.safVirus
 %
 
 
-    properties 
+    properties
         Hammond
         Rizzolo
         NMFF
-    end   
-    
+    end
+
     properties %(Hidden)
         modeOrientation
+        decomp
     end
-    
-    properties (Hidden)    
+
+    properties (Hidden)
         numRModes
         numHModes
-        existH 
-        existR  
+        existH
+        existR
     end
-        
-    methods            
-        %Normal virus constructor        
+
+    methods
+        %Normal virus constructor
         %sipVirus = sipVirus(pdbid, XYZ, orientation, SAF, Hmodes, Rmodes)
-        function sipVirus = sipVirus(varargin) 
-            sipVirus = sipVirus@ejovo.v.safVirus(varargin{:}); 
+        function sipVirus = sipVirus(varargin)
+            sipVirus = sipVirus@ejovo.v.safVirus(varargin{:});
             n = length(varargin);
             if n < 5
                 %adds modes (if they exist)
-                sipVirus = installModes(sipVirus);            
-                sipVirus = normalizeModes(sipVirus); 
+                sipVirus = installModes(sipVirus);
+                sipVirus = normalizeModes(sipVirus);
                 if ~strcmp(sipVirus.orientation, sipVirus.modeOrientation)
                     sipVirus = sipVirus.changeModes;
-                end                
+                end
+                % sipVirus = sipVirus.decompose;
             else
                 sipVirus.modeOrientation = varargin{3};
                 sipVirus.numHModes = length(varargin{5});
@@ -129,17 +131,18 @@ classdef sipVirus < ejovo.v.safVirus
                 else
                     sipVirus.existR = true;
                 end
-                sipVirus = sipVirus.setModes(varargin{5}, varargin{6});  
-            end            
-        end 
-        
-              
+                sipVirus = sipVirus.setModes(varargin{5}, varargin{6});
+            end
+
+        end
+
+
         function sipVirus = changeOrientation(sipVirus)
         %CHANGECOORDINATES Toggles the coordinates between saf and vdb orientation
             sipVirus = changeOrientation@ejovo.v.safVirus(sipVirus);
             sipVirus = changeModes(sipVirus);
         end
-        
+
         %NORMALIZMODES normalizes the calculated eigenmodes and stores
         %them in the cell property MODES
         function sipVirus = normalizeModes(sipVirus)
@@ -154,8 +157,8 @@ classdef sipVirus < ejovo.v.safVirus
                 sum(dot(sipVirus.Rizzolo{ii}, sipVirus.Rizzolo{ii}));
             end
             disp("Modes normalized");
-        end             
-        
+        end
+
         %INSTALLMODES creates a cell of normalized modes that can be used
         %during the initiliazing step.
         function sipVirus = installModes(sipVirus, oldModesDirectory, newModesDirectory)
@@ -182,7 +185,7 @@ classdef sipVirus < ejovo.v.safVirus
                 disp(strcat({'Rizzolo mode directories are: '}, new500PathName, {' and '}, new300PathName))
                 fprintf('\n');
             end
-            
+
             %pull each mode and place it into a cell, going only for as
             %many files are there are
             tic
@@ -192,7 +195,7 @@ classdef sipVirus < ejovo.v.safVirus
             ejovo.fn.cd2parent;
             if exist(mode, 'file')
                 disp('Hammond modes exist - building now...')
-                om_exist = true;                
+                om_exist = true;
             else
                 om_exist = false;
                 disp('Hammond modes not found')
@@ -216,7 +219,7 @@ classdef sipVirus < ejovo.v.safVirus
             if exist(mode, 'file')
                 disp("Rizzolo 500 modes exist, importing now...")
                 nm5_exist = true;
-            else 
+            else
                 nm5_exist = false;
             end
             while exist(mode, 'file')==2
@@ -230,7 +233,7 @@ classdef sipVirus < ejovo.v.safVirus
             if exist(mode, 'file')
                 disp("Rizzolo 300 modes exist, importing now...")
                 nm3_exist = true;
-            else 
+            else
                 nm3_exist = false;
             end
             while exist(mode, 'file')
@@ -246,70 +249,70 @@ classdef sipVirus < ejovo.v.safVirus
             else
                 disp('Rizzolo modes not found');
                 fprintf('\n');
-            end            
+            end
             sipVirus.existH = om_exist;
             sipVirus.existR = or(nm5_exist, nm3_exist);
             sipVirus.numHModes = length(hModes);
             sipVirus.numRModes = length(rModes);
-            sipVirus = setModes(sipVirus, hModes, rModes); 
+            sipVirus = setModes(sipVirus, hModes, rModes);
             sipVirus.modeOrientation = "vdb";
             cd(startDir);
         end
-        
+
         function sipVirus = changeModes(sipVirus)
             if strcmp(sipVirus.modeOrientation, "vdb")
                 sipVirus = rotMod2saf(sipVirus);
             else
                 sipVirus = rotMod2vdb(sipVirus);
             end
-        end        
-        
+        end
+
         %ROTMOD2SAF rotates all of a viruses modes to SAF allignment
-        function sipVirus = rotMod2saf(sipVirus)            
+        function sipVirus = rotMod2saf(sipVirus)
             for ii = 1:sipVirus.numHModes
                 sipVirus.Hammond{ii} = ejovo.saf.rot2saf(sipVirus.Hammond{ii});
-            end            
+            end
             for ii = 1:sipVirus.numRModes
                 sipVirus.Rizzolo{ii} = ejovo.saf.rot2saf(sipVirus.Rizzolo{ii});
-            end   
+            end
             sipVirus.modeOrientation = "saf";
             disp('Modes rotated to saf orientation')
             fprintf('\n');
         end
-        
+
         %ROTMOD2VDB rotates all of a viruses modes to VDB allignment
         function sipVirus = rotMod2vdb(sipVirus)
-            
+
             for ii = 1:sipVirus.numHModes
                 sipVirus.Hammond{ii} = ejovo.saf.rot2vdb(sipVirus.Hammond{ii});
             end
             for ii = 1:sipVirus.numRModes
                 sipVirus.Rizzolo{ii} = ejovo.saf.rot2vdb(sipVirus.Rizzolo{ii});
-            end                        
-            sipVirus.modeOrientation = "vdb";            
+            end
+            sipVirus.modeOrientation = "vdb";
             disp('Modes rotated to vdb orientation')
-            fprintf('\n');            
+            fprintf('\n');
         end
-        
+
         function sipVirus = setModes(sipVirus, hModes, rModes)
         %setModes - sets the modes of a virus
-            if sipVirus.existH 
+            if sipVirus.existH
                 sipVirus.Hammond = hModes;
             end
             if sipVirus.existR
                 sipVirus.Rizzolo = rModes;
             end
         end
-        
-        
+
+
         function summary(sipVirus)
         %SUMMARY provides a visual summary of how the data is stored
         %for a ejovo.v.virus
-            summary@ejovo.v.safVirus(sipVirus)  
+            summary@ejovo.v.safVirus(sipVirus)
             disp(char(strcat(num2str(sipVirus.numHModes), {' Hammond modes installed.'})))
             disp(char(strcat(num2str(sipVirus.numRModes), {' Rizzolo modes installed.'})))
-        end 
-        
+        end
+
         function convertModesToText(sipVirus)
             startDir = pwd;
             modesDir = cell(1,3);
@@ -320,7 +323,7 @@ classdef sipVirus < ejovo.v.safVirus
             nFiles = 0;
             ejovo.fn.cd2parent;
             for ii = 1:3
-                if exist(modesDir{ii}, 'file')                    
+                if exist(modesDir{ii}, 'file')
                     cd(modesDir{ii})
                     d = dir;
                     nFiles = length(d) - 2;
@@ -338,11 +341,11 @@ classdef sipVirus < ejovo.v.safVirus
             disp(strcat(char(int2str(count)), ' mode(s) converted to .txt files'))
             cd(startDir);
         end
-        
+
         %TOAU
         function sipAU = toAU(sipVirus)
             auAtoms = sipVirus.atoms/60;
-            %reduce the hammond modes 
+            %reduce the hammond modes
             hModes = sipVirus.Hammond;
             for ii = 1:sipVirus.numHModes
                 thisMode = hModes{ii};
@@ -360,22 +363,22 @@ classdef sipVirus < ejovo.v.safVirus
             sipAU = ejovo.v.sipAU(sipVirus.pdbid, sipVirus.coords{1:auAtoms, 1:3}, sipVirus.orientation, sipVirus.SAF{1:auAtoms,:}, hModes, rModes);
             sipAU.T = sipVirus.T;
             sipAU.app = sipVirus.app;
-        end        
-        
-        %TOBASE        
+        end
+
+        %TOBASE
         function virus = toBase(sipVirus)
             virus = ejovo.v.virus(sipVirus.pdbid, sipVirus.coords{:,1:3}, sipVirus.orientation);
             virus.T = sipVirus.T;
             virus.app = sipVirus.app;
-        end       
-        
+        end
+
         %TOSAF
         function safVirus = toSAF(sipVirus)
             safVirus = ejovo.v.safVirus(sipVirus.pdbid, sipVirus.coords{:,1:3}, sipVirus.orientation, sipVirus.SAF{:,:});
             safVirus.T = sipVirus.T;
             safVirus.app = sipVirus.app;
         end
-        
+
         function sipVirus = fixModes(sipVirus)
             %set true mode number
             nH = 0;
@@ -394,7 +397,7 @@ classdef sipVirus < ejovo.v.safVirus
                     nR = nR + 1;
                 end
             end
-            
+
             realH = hcell(1:nH);
             realR = rcell(1:nR);
             sipVirus.numHModes = nH;
@@ -414,30 +417,84 @@ classdef sipVirus < ejovo.v.safVirus
                 sipVirus.Rizzolo = realR;
             end
         end
-        
-        
+
+
         function movie = makeHMode(sipVirus, modeNum, angstromsPerFrame, numSteps)
-            if nargin < 4                 
-                numSteps = 10;  
-                if nargin < 3                  
+            if nargin < 4
+                numSteps = 10;
+                if nargin < 3
                     angstromsPerFrame = 1;
                 end
             end
             movie = ejovo.v.movieMaker.makeHMovie(sipVirus, modeNum, angstromsPerFrame, numSteps);
         end
-        
+
         function movie = makeRMode(sipVirus, modeNum, angstromsPerFrame, numSteps)
-            if nargin < 4                 
-                numSteps = 10;  
-                if nargin < 3                  
+            if nargin < 4
+                numSteps = 10;
+                if nargin < 3
                     angstromsPerFrame = 1;
                 end
             end
             movie = ejovo.v.movieMaker.makeRMovie(sipVirus, modeNum, angstromsPerFrame, numSteps);
         end
-        
-        
-        
-        
+
+        function movie = makeNewMode(sipVirus, mode, angstromsPerFrame, numSteps)
+            if nargin < 4
+                numSteps = 10;
+                if nargin < 3
+                    angstromsPerFrame = 1;
+                end
+            end
+            movie = ejovo.v.movieMaker.makeNewMovie(sipVirus, mode, angstromsPerFrame, numSteps);
+        end
+
+        % Decompose modes of the AU and keep the decomposition values for further processing
+        function sipVirus = decompose(sipVirus)
+            dummyAU = ejovo.v.sipAU(sipVirus.pdbid);
+            sipVirus.decomp = dummyAU.decomp;
+        end
+
+        % Return the decomposition values for a certain mode in a 13x1 column vector
+        function sigmaValues = getHDecomp(sipVirus, modeNumber)
+
+            sigmaValues = sipVirus.decomp{:,1}{:,modeNumber};
+
+        end
+
+        function HMode = getHMode(sipVirus, modeNum)
+
+            HMode = sipVirus.Hammond{modeNum};
+
+        end
+
+        % Take a virus that has already been decomposed and rebuild a hammond mode
+        function rebuiltMode = rebuildHMode(sipVirus, modeNum)
+
+            sigma = sipVirus.getHDecomp(modeNum);
+            sizeCoords = size(sipVirus.coords);
+            numAtoms = sizeCoords(1);
+
+            rebuiltMode = zeros(numAtoms, 3);
+
+
+            for ii = 1:13
+
+                rebuiltMode = sigma(ii) * sipVirus.getSAFcart(sipVirus.DEGREE(ii));
+
+            end
+        end
+
+        function r = remainder(sipVirus, modeNum)
+        % Get the remainder ( The orthogonal leftovers ) from the rebuild mode
+
+            rebuiltHMode = sipVirus.rebuildHMode(modeNum);
+
+            r = sipVirus.getHMode(modeNum) - rebuiltHMode;
+
+        end
+
+
+
     end
 end
