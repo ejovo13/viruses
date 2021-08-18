@@ -1,18 +1,18 @@
 classdef movieMaker
-%MOVIEMAKER - Handles the creation of vmd movies 
+%MOVIEMAKER - Handles the creation of vmd movies
 
     properties
         coords
         mode
-        radial   
+        radial
         scale
         scaledMode
         angstromPerFrame
     end
-    
-    methods 
-        
-        function MM = movieMaker(coords, mode, angstromPerFrame)            
+
+    methods
+
+        function MM = movieMaker(coords, mode, angstromPerFrame)
             MM.coords = coords;
             MM.mode = mode;
             MM.angstromPerFrame = angstromPerFrame;
@@ -25,8 +25,8 @@ classdef movieMaker
             MM = MM.findScalingFactor;
             MM = MM.convertMode2XYZ;
             MM = MM.scaleMode;
-        end   
-        
+        end
+
         function MM = findScalingFactor(MM)
             [~, n] = size(MM.mode);
             if n == 1
@@ -43,7 +43,7 @@ classdef movieMaker
             end
             MM.scale = MM.angstromPerFrame/maxDisplacement;
         end
-        
+
         function MM = convertMode2XYZ(MM)
             if MM.radial
                 [X, Y, Z] = sph2cart(MM.coords(:,4), MM.coords(:,5), MM.mode);
@@ -51,57 +51,61 @@ classdef movieMaker
                 MM.radial = false;
             end
         end
-        
+
         function MM = scaleMode(MM)
             MM.scaledMode = MM.mode * MM.scale;
-        end       
-        
+        end
+
         function frames = makeLoop(MM, numSteps)
             numFrames = numSteps*2;
             frames = ejovo.v.virusFrame.empty(0, numFrames);
             frames(1) = ejovo.v.virusFrame(MM.coords(:,1:3), 0);
-            
+
             for ii = 1:numSteps
                 nextPos = frames(ii).XYZ + MM.scaledMode;
                 frames(ii + 1) = ejovo.v.virusFrame(nextPos, ii);
             end
             reverseFrames = flip(2:numSteps);
-            frames = [frames, frames(reverseFrames)];            
+            frames = [frames, frames(reverseFrames)];
         end
-        
+
         function movie = makeMovie(MM, pdbid, modeType, modeNum, angstromPerFrame, numSteps)
             frames = MM.makeLoop(numSteps);
             movie = ejovo.v.movie(frames, pdbid, modeType, modeNum, angstromPerFrame);
         end
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
     end
-    
+
     methods (Static)
-        
+
         function SAFMovie = makeSAFMovie(safVirus, modeNum, angstromPerFrame, numSteps)
             index = safVirus.DEGREE == modeNum;
             MM = ejovo.v.movieMaker(safVirus.coords{:,:}, safVirus.SAF{:,index}, angstromPerFrame);
             SAFMovie = MM.makeMovie(safVirus, 'SAF', modeNum, angstromPerFrame, numSteps);
         end
-        
+
         function SAFMovie = makeHMovie(sipVirus, modeNum, angstromPerFrame, numSteps)
             MM = ejovo.v.movieMaker(sipVirus.coords{:,:}, sipVirus.Hammond{modeNum}, angstromPerFrame);
             SAFMovie = MM.makeMovie(sipVirus, 'H', modeNum, angstromPerFrame, numSteps);
         end
-        
+
         function SAFMovie = makeRMovie(sipVirus, modeNum, angstromPerFrame, numSteps)
             MM = ejovo.v.movieMaker(sipVirus.coords{:,:}, sipVirus.Rizzolo{modeNum}, angstromPerFrame);
             SAFMovie = MM.makeMovie(sipVirus, 'R', modeNum, angstromPerFrame, numSteps);
         end
-        
-       
-        
+
+        function ANYMovie = makeNewMovie(sipVirus, mode, angstromPerFrame, numSteps)
+            MM = ejovo.v.movieMaker(sipVirus.coords{:,:}, mode, angstromPerFrame);
+            ANYMovie = MM.makeMovie(sipVirus, 'Custom', 0, angstromPerFrame, numSteps);
+        end
+
+
     end
-    
-    
+
+
 end
